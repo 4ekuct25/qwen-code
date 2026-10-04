@@ -277,6 +277,8 @@ class HttpManagedSessionResourceStore implements ManagedSessionResourceStore {
         if (ref.kind === 'managed-checkpoint') {
           const parsed = tryParseHarnessCheckpointV1(staged.bytes);
           if (parsed.ok) pending.push(...collectRefs([parsed.checkpoint]));
+        } else if (ref.kind === 'managed-action-options') {
+          pending.push(...collectRefs([JSON.parse(staged.bytes.toString())]));
         } else if (EXTENSION_RECORD_KINDS.has(ref.kind)) {
           // A Stage H record commits the resources its closed body names.
           pending.push(...collectRefs([JSON.parse(staged.bytes.toString())]));
