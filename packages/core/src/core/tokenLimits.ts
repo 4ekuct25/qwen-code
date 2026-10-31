@@ -1,4 +1,7 @@
-import { lookupModelCatalog } from '../models/model-catalog.js';
+import {
+  lookupModelCatalog,
+  versionSpellingAlias,
+} from '../models/model-catalog.js';
 
 type Model = string;
 type TokenCount = number;
@@ -260,8 +263,17 @@ const PATTERNS: Array<[RegExp, TokenCount]> = [
   [/^qwen3-coder-plus/, LIMITS['1m']],
   [/^qwen3-coder-flash/, LIMITS['1m']],
   [/^qwen3\.\d/, LIMITS['1m']],
+  // 1M is the forward default for the qwen4 generation, so qwen4.x releases
+  // need no further code change. The catalog still wins once models.dev
+  // publishes a qwen4 entry with a different window.
+  [/^qwen4/, LIMITS['1m']],
   [/^qwen-plus-latest$/, LIMITS['1m']],
   [/^qwen-flash-latest$/, LIMITS['1m']],
+  // Invite-only series aliases (`qwen-latest-series-invite-202610-m4`) name no
+  // model generation the rows above key on and are absent from models.dev, so
+  // they fell through to the 256K family row. The whole series is 1M; the
+  // trailing hyphen keeps the prefix off ids that merely share its letters.
+  [/^qwen-latest-series-/, LIMITS['1m']],
   [/^coder-model$/, LIMITS['1m']],
   // Commercial API models (256K context)
   [/^qwen3-max/, LIMITS['256k']],
@@ -351,6 +363,28 @@ const OUTPUT_PATTERNS: Array<[RegExp, TokenCount]> = [
   [/^kimi-k2\.5/, LIMITS['32k']],
 ];
 
+/**
+ * The curated output limit for a normalized id, from its own spelling or from
+ * the other spelling of the same version. OUTPUT_PATTERNS is written against
+ * one spelling while the catalog commits both, so a spelling no row names
+ * would fall through to models.dev's unadjusted `output` and outrank the pin
+ * on its own twin (`glm-4-7` sized requests at 131,072 while `/^glm-4\.7/`
+ * caps `glm-4.7` at 16,384). The id's own row wins, so the twin only reaches
+ * ids the alias pass added. `hasExplicitOutputLimit` reads the same rule, so a
+ * curated limit is never served without also clamping an explicit request.
+ */
+function curatedOutputLimit(norm: string): TokenCount | undefined {
+  const twin = versionSpellingAlias(norm);
+  for (const spelling of twin === undefined ? [norm] : [norm, twin]) {
+    for (const [regex, limit] of OUTPUT_PATTERNS) {
+      if (regex.test(spelling)) {
+        return limit;
+      }
+    }
+  }
+  return undefined;
+}
+
 function findTokenLimit(
   model: Model,
   type: TokenLimitType = 'input',
@@ -365,15 +399,18 @@ function findTokenLimit(
   if (usableCatalogContext) {
     return fromCatalog;
   }
-  const patterns = type === 'output' ? OUTPUT_PATTERNS : PATTERNS;
 
-  for (const [regex, limit] of patterns) {
+  if (type === 'output') {
+    return curatedOutputLimit(norm) ?? fromCatalog;
+  }
+
+  for (const [regex, limit] of PATTERNS) {
     if (regex.test(norm)) {
       return limit;
     }
   }
 
-  return type === 'input' ? undefined : fromCatalog;
+  return undefined;
 }
 
 /**
@@ -381,8 +418,7 @@ function findTokenLimit(
  * supply defaults, but must not clamp a user's endpoint-specific override.
  */
 export function hasExplicitOutputLimit(model: Model): boolean {
-  const norm = normalize(model);
-  return OUTPUT_PATTERNS.some(([regex]) => regex.test(norm));
+  return curatedOutputLimit(normalize(model)) !== undefined;
 }
 
 export function knownTokenLimit(
