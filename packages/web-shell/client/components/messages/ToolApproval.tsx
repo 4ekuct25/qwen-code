@@ -721,11 +721,7 @@ export function ToolApproval({
             <Markdown content={contentDisplay} />
           </div>
         ) : (
-          <pre
-            className={styles.content}
-            id={commandId}
-            title={contentDisplay}
-          >
+          <pre className={styles.content} id={commandId} title={contentDisplay}>
             {contentDisplay}
           </pre>
         )
