@@ -1,0 +1,266 @@
+{
+  "mode": "after",
+  "A": "c2474E1C-32DD-46DA-B191-FB28FAAEFA6B",
+  "targetId": "5E1B91AC1F4D36A2CF5B60D7E277961B",
+  "pre": "/Users/s.panchenko/Projects/1cupis/setup-qwencode/.qwen/tmp/sap-e2e/after/pre-split.png",
+  "fin": "/Users/s.panchenko/Projects/1cupis/setup-qwencode/.qwen/tmp/sap-e2e/after/end.png",
+  "occluded": true,
+  "archiveResponse": "{\"archived\":[\"c2474e1c-32dd-46da-b191-fb28faaefa6b\"],\"alreadyArchived\":[],\"resolvedConflicts\":[],\"notFound\":[],\"errors\":[]}",
+  "firstBannerAt_ms": 2,
+  "lastBannerAt_ms": 2,
+  "firstBelowTwoPanesAt_ms": 505,
+  "finalPanes": 1,
+  "timeline": [
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 ping — ответь одним словом 02:06:34 Processed 11s ↑56.6k (15.0k cached, 27%)",
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 2
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 505
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 1007
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 1510
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 2013
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 2515
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 3017
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 3519
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 4021
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 4524
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 5026
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 5528
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 6030
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 6532
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 7034
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 7536
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 8039
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 8542
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 9044
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 9547
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 10050
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 10552
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 11055
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 11558
+    },
+    {
+      "panes": 1,
+      "banner": false,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18462/session/d0507a58-c3c5-4819-b31b-6a798b6a5cc8",
+      "paneTexts": [
+        "ws2 d0507a58 ping — ответь одним словом 02:06:34 Processed 8s ↑55.4k (32.2k cach"
+      ],
+      "t_ms": 12059
+    }
+  ]
+}

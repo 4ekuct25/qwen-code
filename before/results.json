@@ -1,0 +1,290 @@
+{
+  "mode": "before",
+  "A": "8C93B864-430A-4753-B477-41426F8468AC",
+  "targetId": "900D16F170A69321ED2AEB895C6076F4",
+  "pre": "/Users/s.panchenko/Projects/1cupis/setup-qwencode/.qwen/tmp/sap-e2e/before/pre-split.png",
+  "fin": "/Users/s.panchenko/Projects/1cupis/setup-qwencode/.qwen/tmp/sap-e2e/before/end.png",
+  "occluded": true,
+  "archiveResponse": "{\"archived\":[\"8c93b864-430a-4753-b477-41426f8468ac\"],\"alreadyArchived\":[],\"resolvedConflicts\":[],\"notFound\":[],\"errors\":[]}",
+  "firstBannerAt_ms": 2,
+  "lastBannerAt_ms": 12195,
+  "firstBelowTwoPanesAt_ms": null,
+  "finalPanes": 2,
+  "timeline": [
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 2
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 503
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 1005
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 1509
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 2137
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 2641
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 3144
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 3646
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 4149
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 4652
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 5155
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 5658
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 6161
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 6663
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 7165
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 7668
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 8171
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 8674
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 9176
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 9679
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 10182
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 10686
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 11190
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 11692
+    },
+    {
+      "panes": 2,
+      "banner": true,
+      "ready": "complete",
+      "url": "http://127.0.0.1:18461/session/cc3182ea-9bbb-4c96-bdbd-8499a7085bea",
+      "paneTexts": [
+        "ws ping — ответь одним словом 01:10:35 Processed 10s ↑56.4k (64 cached, 0%) ↓25 ",
+        "ws cc3182ea ping — ответь одним словом 01:10:35 Processed 10s ↑55.1k (25.2k cach"
+      ],
+      "t_ms": 12195
+    }
+  ]
+}
