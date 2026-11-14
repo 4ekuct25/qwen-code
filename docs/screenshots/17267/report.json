@@ -1,0 +1,35 @@
+{
+  "steps": [
+    {
+      "id": "S0",
+      "name": "app ready on built PR branch bundle",
+      "status": "PASS",
+      "evidence": "{\"url\":\"http://127.0.0.1:8137/\",\"bundleScript\":\"index-CAjRdFTj.js\",\"sidebarRows\":[\"PR17267 ARM loop wakeup demo\",\"PR17267 ARM loop wakeup demo\"],\"loopMarkerInSidebar\":true,\"markerText\":\"Loop: next tick 00:16:48\",\"headerChip\":null}"
+    },
+    {
+      "id": "W2",
+      "name": "sidebar session row shows timer marker (Loop: next tick …)",
+      "status": "PASS",
+      "evidence": "{\"marker\":{\"title\":\"Loop: next tick 00:16:48\",\"text\":\"\"},\"rowText\":\"PR17267 ARM loop wakeup demo\",\"clip\":{\"x\":62,\"y\":166,\"width\":276,\"height\":42}}"
+    },
+    {
+      "id": "W3",
+      "name": "open-session chat header shows Loop · next tick chip (row clicks: 1)",
+      "status": "PASS",
+      "evidence": "{\"chip\":\"Loop · next tick 00:16:48\",\"chipTitle\":\"Loop · next tick 00:16:48\",\"headerRect\":{\"x\":356,\"y\":0,\"w\":1388,\"h\":52}}"
+    },
+    {
+      "id": "W1",
+      "name": "Scheduled Tasks page shows Pending loop wakeups section (nav click attempt 1, matched: Scheduled Tasks)",
+      "status": "PASS",
+      "evidence": "{\"sectionFound\":true,\"sectionText\":\"Qwen CodeNew sessionWorkspacese2e-wsPR17267 ARM loop wakeup demoRecentPR17267 ARM loop wakeup demoScheduled TasksRun tasks automatically on a schedule, or trigger them manually anytime.0 tasksRefreshCreate via chatNew scheduled taskNo scheduled tasks yet. Create one to get started.Pending loop wakeups (session-only)580746c4next tick 00:16:48PR17267-ARM demo tick: verify the loop-wakeup visibility \",\"dialogRect\":{\"x\":0,\"y\":0,\"w\":1744,\"h\":952},\"rows\":[\"Pending loop wakeups (session-only)580746c4next tick 00:16:48PR17267-ARM demo tick: verify the loop-wakeup visibility UI (issue 17267, temp demo, auto-cleanup)\",\"Pending loop wakeups (session-only)\",\"580746c4next tick 00:16:48PR17267-ARM demo tick: verify the loop-wakeup visibility UI (issue 17267, temp demo, auto-cleanup)\",\"\",\"580746c4\"]}"
+    }
+  ],
+  "meta": {
+    "run": "e2e-17267-loop-wakeup",
+    "pageUrl": "http://127.0.0.1:8137/#token=<redacted>",
+    "bridgePort": 63542,
+    "at": "2026-11-14T21:06:55.696Z",
+    "targetId": "1113E3F0CB851FD8ECA76637EB8AECA5"
+  }
+}

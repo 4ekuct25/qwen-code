@@ -1,0 +1,13 @@
+{
+    "v": 1,
+    "tasks": [],
+    "wakeups": [
+        {
+            "sessionId": "580746c4-41f7-422d-a1ca-bfd32d8420ac",
+            "fireAtMs": 1794691008268,
+            "createdAt": 1794690408268,
+            "prompt": "PR17267-ARM demo tick: verify the loop-wakeup visibility UI (issue 17267, temp demo, auto-cleanup)",
+            "todoWorkChainId": "580746c4-41f7-422d-a1ca-bfd32d8420ac########2"
+        }
+    ]
+}
