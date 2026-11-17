@@ -364,7 +364,12 @@ import {
   getFileChangesByTurn,
   getScheduledTasksByTurn,
 } from './components/artifacts/turnOutputSelectors';
-import { artifactDisplayName } from './components/artifacts/artifactUtils';
+import {
+  artifactDisplayName,
+  blobToDataUrl,
+  getImageMimeTypeFromPath,
+  readWorkspaceFileAsBlob,
+} from './components/artifacts/artifactUtils';
 import { useIsLargeScreen } from './hooks/useIsLargeScreen';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 import {
@@ -18776,6 +18781,63 @@ export function App({
     notificationNavigationTarget,
     lockedWorkspaceCwd,
   ]);
+
+  // Local file links in assistant markdown (qwen:open-file, dispatched by
+  // MarkdownLink): open the path in the artifact panel's file view, scoped to
+  // the session workspace. The daemon's /file routes enforce containment.
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ path?: unknown }>).detail;
+      const path = typeof detail?.path === 'string' ? detail.path.trim() : '';
+      if (!path) return;
+      const cwd = connection.workspaceCwd;
+      if (!cwd) return;
+      const workspaceId = (workspace.capabilities?.workspaces ?? []).find(
+        (item) => item.cwd === cwd,
+      )?.id;
+      openFilePreview(path, cwd, workspaceId);
+      setArtifactPanelOpen(true);
+    };
+    window.addEventListener('qwen:open-file', handler);
+    return () => window.removeEventListener('qwen:open-file', handler);
+  }, [
+    connection.workspaceCwd,
+    openFilePreview,
+    setArtifactPanelOpen,
+    workspace.capabilities?.workspaces,
+  ]);
+
+  // Local images in assistant markdown (qwen:open-local-image, dispatched when
+  // a LocalImagePreview is clicked): load the bytes through the daemon and
+  // open a full-size image tab in the artifact panel. The data: URL doubles
+  // as a stable tab id, mirroring the attachment image preview.
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ path?: unknown; alt?: unknown }>)
+        .detail;
+      const path = typeof detail?.path === 'string' ? detail.path.trim() : '';
+      const alt =
+        typeof detail?.alt === 'string' && detail.alt ? detail.alt : undefined;
+      const mimeType = path ? getImageMimeTypeFromPath(path) : undefined;
+      if (!path || !mimeType) return;
+      void readWorkspaceFileAsBlob(
+        (filePath, options) =>
+          workspaceActions.readFileBytes(filePath, options),
+        path,
+        mimeType,
+        { statFile: (filePath) => workspaceActions.stat(filePath) },
+      )
+        .then((blob) => blobToDataUrl(blob))
+        .then((dataUrl) => {
+          openImagePanel(dataUrl, alt);
+        })
+        .catch((err) => {
+          pushToast('error', err instanceof Error ? err.message : String(err));
+        });
+    };
+    window.addEventListener('qwen:open-local-image', handler);
+    return () => window.removeEventListener('qwen:open-local-image', handler);
+  }, [openImagePanel, pushToast, workspaceActions]);
 
   // Listen for toast requests from deeply nested components (markdown links
   // and artifact actions reporting a failed external open, for example).

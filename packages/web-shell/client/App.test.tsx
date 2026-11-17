@@ -78,6 +78,10 @@ import type { WebShellApi } from './App';
 import { PromptDispatchCancelledError } from './utils/promptAdmission';
 import type { McpAppPromptSubmission } from './hooks/useMcpAppMessages';
 import type { ArtifactPanel } from './components/artifacts/ArtifactPanel';
+import {
+  blobToDataUrl,
+  readWorkspaceFileAsBlob,
+} from './components/artifacts/artifactUtils';
 import type { WebShellSettingsOptions } from './settings';
 import type { WebShellModelManagementOptions } from './modelManagement';
 import type { WebShellModelPickerOptions } from './model-picker';
@@ -1231,6 +1235,20 @@ vi.mock('./components/artifacts/ArtifactPanel', async (importOriginal) => {
         </>
       );
     },
+  };
+});
+
+// Wraps the real helpers so tests of the local-image panel flow can stub the
+// daemon byte reads without replacing the rest of the module.
+vi.mock('./components/artifacts/artifactUtils', async (importOriginal) => {
+  const actual =
+    await importOriginal<
+      typeof import('./components/artifacts/artifactUtils')
+    >();
+  return {
+    ...actual,
+    readWorkspaceFileAsBlob: vi.fn(actual.readWorkspaceFileAsBlob),
+    blobToDataUrl: vi.fn(actual.blobToDataUrl),
   };
 });
 
@@ -46780,6 +46798,91 @@ describe('App session callbacks', () => {
       ).toBe(true);
     } finally {
       mockSessionActions.addArtifact.mockReset().mockResolvedValue({});
+    }
+  });
+
+  it('opens qwen:open-file markdown links in the file view', async () => {
+    // Align the session cwd with the mocked workspace so the listener can
+    // resolve the workspaceId from capabilities.
+    const previousCwd = mockConnection.workspaceCwd;
+    mockConnection.workspaceCwd = '/workspace';
+    try {
+      renderApp();
+      await flush();
+      await act(async () => {
+        window.dispatchEvent(
+          new CustomEvent('qwen:open-file', {
+            detail: { path: 'docs/report.md' },
+          }),
+        );
+        await Promise.resolve();
+      });
+      const props = testState.latestArtifactPanelProps;
+      expect(props).not.toBeNull();
+      const tab = props!.tabs.find((item) => item.kind === 'file');
+      expect(tab).toMatchObject({
+        workspacePath: 'docs/report.md',
+        workspaceCwd: '/workspace',
+        workspaceId: 'primary',
+      });
+    } finally {
+      mockConnection.workspaceCwd = previousCwd;
+    }
+  });
+
+  it('ignores qwen:open-file events without a usable path', async () => {
+    renderApp();
+    await flush();
+    for (const detail of [{}, { path: 42 }, { path: '   ' }]) {
+      await act(async () => {
+        window.dispatchEvent(new CustomEvent('qwen:open-file', { detail }));
+        await Promise.resolve();
+      });
+    }
+    // No file tab was opened, so the artifact panel may not have mounted at
+    // all: treat a missing panel as zero file tabs.
+    const fileTabs =
+      testState.latestArtifactPanelProps?.tabs.filter(
+        (item) => item.kind === 'file',
+      ) ?? [];
+    expect(fileTabs).toHaveLength(0);
+  });
+
+  it('opens qwen:open-local-image clicks in the artifact image panel', async () => {
+    const readSpy = vi.mocked(readWorkspaceFileAsBlob);
+    const dataUrlSpy = vi.mocked(blobToDataUrl);
+    const previousCwd = mockConnection.workspaceCwd;
+    mockConnection.workspaceCwd = '/workspace';
+    readSpy.mockResolvedValue(new Blob(['fake-png'], { type: 'image/png' }));
+    dataUrlSpy.mockResolvedValue('data:image/png;base64,FAKE');
+    try {
+      renderApp();
+      await flush();
+      await act(async () => {
+        window.dispatchEvent(
+          new CustomEvent('qwen:open-local-image', {
+            detail: { path: 'shot.png', alt: 'Shot' },
+          }),
+        );
+        await Promise.resolve();
+      });
+      expect(readSpy).toHaveBeenCalledWith(
+        expect.any(Function),
+        'shot.png',
+        'image/png',
+        expect.anything(),
+      );
+      const props = testState.latestArtifactPanelProps;
+      expect(props).not.toBeNull();
+      const tab = props!.tabs.find((item) => item.kind === 'image');
+      expect(tab).toMatchObject({
+        src: 'data:image/png;base64,FAKE',
+        alt: 'Shot',
+      });
+    } finally {
+      readSpy.mockRestore();
+      dataUrlSpy.mockRestore();
+      mockConnection.workspaceCwd = previousCwd;
     }
   });
 

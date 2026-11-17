@@ -377,3 +377,34 @@
 .content :global(.katex) {
   font-size: 1.1em;
 }
+
+.localImage {
+  cursor: pointer;
+}
+
+.localImageChip {
+  display: inline-block;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+  margin: 1.5rem 0;
+  padding: 1px 6px;
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+.localImagePlaceholder {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+  background: var(--border);
+  opacity: 0.4;
+}

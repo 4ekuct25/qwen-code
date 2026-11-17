@@ -71,7 +71,7 @@ const exportTranscriptMaxEnvelopeBytes = 32 * 1024 * 1024;
 // Keep the warning close to the measurement and the hard ceiling close above
 // it: a cap left far above the measurement is a ratchet with enough slack for
 // a whole dependency family to come back unnoticed.
-const DOCUMENT_RUNTIME_WARNING_BYTES = 2_143_100;
+const DOCUMENT_RUNTIME_WARNING_BYTES = 2_145_300;
 // Grouped deletion plus main 159f8d0266 measures 2,041,583 JS bytes
 // (CSS is separate). Per-cause loop-stop text (#14828: seven keys across two
 // locales plus their mapping) adds 5,139: 2,041,583 against 2,046,722 on main
@@ -121,7 +121,15 @@ const DOCUMENT_RUNTIME_WARNING_BYTES = 2_143_100;
 // turn another session's reply starts (its card label, keeping the card in a
 // folded turn, and opening that session from it) brings it to 2,142,326. The
 // warning sits 774 above that measurement and the ceiling 1,774 above it.
-const MAX_DOCUMENT_RUNTIME_BYTES = 2_144_100;
+// Clickable local file links and inline workspace images in the web-shell
+// transcript (#6736: local-path detection, the file-link event wiring and
+// the local image preview, all reachable from the document entry) measure
+// 2,144,327 bytes locally on main b9da38c7bd, where the CI lane measures
+// about 500 bytes lower. The warning sits 973 above that measurement and
+// the ceiling 4,973 above it, leaving room for main drift between the
+// branch base and the merge (#14001's merged tree measured 3,556 bytes
+// above its head measurement).
+const MAX_DOCUMENT_RUNTIME_BYTES = 2_149_300;
 
 // Modules that must not be reachable from the document entry, checked against
 // the esbuild metafile inputs after the bundle is produced.

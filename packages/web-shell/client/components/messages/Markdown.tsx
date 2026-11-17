@@ -44,6 +44,9 @@ import { ErrorBoundary } from '../ErrorBoundary';
 import { EnhancedMarkdownTable } from './EnhancedMarkdownTable';
 import { FootnoteSection, FootnoteSup } from './FootnoteCard';
 import { rehypeFootnoteCards } from './rehype-footnote-cards';
+import { openFileLink } from './file-link';
+import { LocalImagePreview } from './LocalImagePreview';
+import { isLocalFilePath, isLocalImageSrc } from './local-file-path';
 import { openSessionLink } from './session-link';
 import {
   DEFAULT_WEB_SHELL_MARKDOWN_CHART,
@@ -894,7 +897,20 @@ export function markdownUrlTransform(
   if (documentMode && SAFE_DOCUMENT_IMAGE_DATA_URI.test(url.trim())) {
     return url;
   }
-  return QWEN_SESSION_SCHEME.test(url.trim()) ? url : defaultUrlTransform(url);
+  const trimmed = url.trim();
+  if (QWEN_SESSION_SCHEME.test(trimmed)) {
+    return url;
+  }
+  // Local filesystem paths: the default sanitizer already passes protocol-less
+  // paths, but it blanks Windows drive forms (`C:\…`) because the drive colon
+  // reads as a protocol. `MarkdownLink`/`MarkdownImage` intercept local paths
+  // in interactive mode, so every local form must arrive intact. Document
+  // (export) mode keeps the default sanitizer: the export DOM must not carry
+  // machine paths.
+  if (!documentMode && isLocalFilePath(trimmed)) {
+    return url;
+  }
+  return defaultUrlTransform(url);
 }
 
 function MarkdownLink({
@@ -961,6 +977,27 @@ function MarkdownLink({
       </a>
     );
   }
+  if (href && isLocalFilePath(href)) {
+    if (renderMode !== 'interactive') {
+      return <span className={styles.link}>{children}</span>;
+    }
+    const target = href.trim();
+    return (
+      <a
+        href="#"
+        role="button"
+        title={target}
+        className={styles.link}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          openFileLink(target);
+        }}
+      >
+        {children}
+      </a>
+    );
+  }
   const safeHref = isSafeHref(href) ? href : undefined;
   return (
     <a
@@ -977,6 +1014,9 @@ function MarkdownLink({
 
 function MarkdownImage({ src, alt }: { src?: string; alt?: string }) {
   const renderMode = useTranscriptRenderMode();
+  if (renderMode === 'interactive' && src && isLocalImageSrc(src)) {
+    return <LocalImagePreview path={src.trim()} alt={alt} />;
+  }
   const safeSrc = isSafeImageSrc(src, renderMode === 'document')
     ? src
     : undefined;

@@ -340,6 +340,21 @@ export async function readWorkspaceFileAsBlob(
   }
 }
 
+/**
+ * Encodes a blob as a `data:` URL (FileReader-based, like the export
+ * preview asset inlining) so it can travel through React state and serve
+ * as a stable `<img>` source for artifact-panel image tabs. The blob's own
+ * `type` is embedded into the URL by the reader.
+ */
+export function blobToDataUrl(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(blob);
+  });
+}
+
 export async function downloadWorkspaceFile(
   workspaceActions: Pick<DaemonWorkspaceActions, 'readFileBytes' | 'stat'>,
   workspacePath: string,

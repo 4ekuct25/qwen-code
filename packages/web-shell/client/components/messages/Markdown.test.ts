@@ -27,6 +27,17 @@ import {
   resolveFenceLanguage,
 } from './Markdown';
 
+// The Markdown-level tests assert that a local image src is routed to
+// LocalImagePreview; its own loading behavior is covered in
+// LocalImagePreview.test.tsx.
+vi.mock('./LocalImagePreview', () => ({
+  LocalImagePreview: ({ path, alt }: { path: string; alt?: string }) =>
+    createElement('div', {
+      'data-test-local-image': path,
+      'data-test-local-image-alt': alt ?? '',
+    }),
+}));
+
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
 
 afterEach(() => {
@@ -235,6 +246,21 @@ describe('markdownUrlTransform', () => {
       markdownUrlTransform('data:image/svg+xml;base64,PHN2Zz4=', true),
     ).toBe('');
   });
+
+  it('lets local filesystem paths through in interactive mode', () => {
+    expect(markdownUrlTransform('/Users/foo/report.md')).toBe(
+      '/Users/foo/report.md',
+    );
+    expect(markdownUrlTransform('docs/REPORT.md')).toBe('docs/REPORT.md');
+    // The default sanitizer would blank Windows drive forms (the drive
+    // colon reads as a protocol); the interactive interception needs them
+    // intact.
+    expect(markdownUrlTransform('C:%5CUsers%5Cfoo%5Cshot.png')).toBe(
+      'C:%5CUsers%5Cfoo%5Cshot.png',
+    );
+    // Document (export) mode must not carry machine paths into the DOM.
+    expect(markdownUrlTransform('C:%5CUsers%5Cfoo%5Cshot.png', true)).toBe('');
+  });
 });
 
 describe('qwen-session:// links', () => {
@@ -312,6 +338,125 @@ describe('qwen-session:// links', () => {
     expect(a.getAttribute('href')).toBeNull();
     (c as HTMLDivElement & { __unmount: () => void }).__unmount();
     c.remove();
+  });
+});
+
+describe('local file links', () => {
+  it.each([
+    { href: 'docs/REPORT.md', label: 'report' },
+    { href: '/Users/foo/report.md', label: 'report' },
+    { href: '~/.qwen/settings.json', label: 'settings' },
+  ])('opens $href in the file view', ({ href, label }) => {
+    const seen: unknown[] = [];
+    const handler = (e: Event) => seen.push((e as CustomEvent).detail);
+    window.addEventListener('qwen:open-file', handler);
+    const c = renderMd(`[${label}](${href})`);
+    const a = c.querySelector('a')!;
+    expect(a.getAttribute('role')).toBe('button');
+    // The path never becomes the href: the anchor is a plain '#'.
+    expect(a.getAttribute('href')).toBe('#');
+    expect(a.getAttribute('title')).toBe(href);
+    act(() => {
+      a.dispatchEvent(
+        new MouseEvent('click', { bubbles: true, cancelable: true }),
+      );
+    });
+    window.removeEventListener('qwen:open-file', handler);
+    expect(seen).toEqual([{ path: href }]);
+    (c as HTMLDivElement & { __unmount: () => void }).__unmount();
+    c.remove();
+  });
+
+  it('survives react-markdown sanitization for Windows drive paths', () => {
+    const c = renderMd('[shot](C:%5CUsers%5Cfoo%5Cshot.png)');
+    const a = c.querySelector('a')!;
+    expect(a.getAttribute('role')).toBe('button');
+    expect(a.getAttribute('title')).toBe('C:%5CUsers%5Cfoo%5Cshot.png');
+    (c as HTMLDivElement & { __unmount: () => void }).__unmount();
+    c.remove();
+  });
+
+  it('renders local paths as inert text in readonly mode', () => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    const root = createRoot(container);
+    const handler = vi.fn();
+    window.addEventListener('qwen:open-file', handler);
+    act(() => {
+      root.render(
+        createElement(
+          TranscriptRenderModeProvider,
+          { value: 'readonly' },
+          createElement(Markdown, { content: '[report](docs/REPORT.md)' }),
+        ),
+      );
+    });
+    expect(container.querySelector('a')).toBeNull();
+    expect(container.querySelector('span')?.textContent).toBe('report');
+    expect(handler).not.toHaveBeenCalled();
+    window.removeEventListener('qwen:open-file', handler);
+    act(() => root.unmount());
+    container.remove();
+  });
+
+  it('leaves non-local links on the external-link path', () => {
+    const c = renderMd('[x](https://example.com/page)');
+    const a = c.querySelector('a')!;
+    expect(a.getAttribute('role')).not.toBe('button');
+    expect(a.getAttribute('href')).toBe('https://example.com/page');
+    (c as HTMLDivElement & { __unmount: () => void }).__unmount();
+    c.remove();
+  });
+});
+
+describe('local markdown images', () => {
+  it('routes a local image src to LocalImagePreview', () => {
+    const c = renderMd('![chart](/tmp/chart.png)');
+    const node = c.querySelector('[data-test-local-image]');
+    expect(node).not.toBeNull();
+    expect(node!.getAttribute('data-test-local-image')).toBe('/tmp/chart.png');
+    expect(node!.getAttribute('data-test-local-image-alt')).toBe('chart');
+    // The raw machine path must not reach the DOM as an img src.
+    expect(c.querySelector('img')).toBeNull();
+    (c as HTMLDivElement & { __unmount: () => void }).__unmount();
+    c.remove();
+  });
+
+  it.each(['![a](assets/a.jpg)', '![b](C:%5CUsers%5Cfoo%5Cb.png)'])(
+    'routes %s to LocalImagePreview',
+    (content) => {
+      const c = renderMd(content);
+      expect(c.querySelector('[data-test-local-image]')).not.toBeNull();
+      expect(c.querySelector('img')).toBeNull();
+      (c as HTMLDivElement & { __unmount: () => void }).__unmount();
+      c.remove();
+    },
+  );
+
+  it('keeps non-image local files on the plain image path', () => {
+    const c = renderMd('![notes](notes.md)');
+    expect(c.querySelector('[data-test-local-image]')).toBeNull();
+    expect(c.querySelector('img')!.getAttribute('src')).toBeNull();
+    (c as HTMLDivElement & { __unmount: () => void }).__unmount();
+    c.remove();
+  });
+
+  it('does not proxy local images in readonly mode', () => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    const root = createRoot(container);
+    act(() => {
+      root.render(
+        createElement(
+          TranscriptRenderModeProvider,
+          { value: 'readonly' },
+          createElement(Markdown, { content: '![chart](/tmp/chart.png)' }),
+        ),
+      );
+    });
+    expect(container.querySelector('[data-test-local-image]')).toBeNull();
+    act(() => root.unmount());
+    container.remove();
   });
 });
 
